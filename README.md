@@ -8,7 +8,7 @@ Este projeto faz parte de uma arquitetura de microserviços que integra Intelig�
 - **Monitoramento Personalizado:** Busca notícias apenas dos ativos presentes na sua carteira (ex: PETR4, Bitcoin, Ethereum).
 - **Inteligência Artificial:** Utiliza a API do Tavily para ler, filtrar e resumir as notícias mais relevantes do mercado brasileiro (B3) e cripto.
 - **Notificações Real-time:** Envio de alertas formatados via Telegram Bot.
-- **Segurança:** Gestão de credenciais via variáveis de ambiente (`.env`).
+
 
 ## Tecnologias Utilizadas
 - **Linguagem:** Python 3.12
