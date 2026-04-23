@@ -1,0 +1,32 @@
+name: Execucao automatica do InvestNote resumo diario
+
+on: 
+  schedule:
+    - cron: '0 13 * * *' # 10h da manhã no RS
+  workflow_dispatch: 
+
+jobs: 
+  run-scraper:
+    runs-on: ubuntu-latest 
+    
+    steps: 
+      - name: Checkout do codigo
+        uses: actions/checkout@v4
+
+      - name: Instalar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar Poetry e Dependencias
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+          export PATH="$HOME/.local/bin:$PATH"
+          poetry install
+
+      - name: Executar o Scraper
+        env:
+          TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+        run: poetry run python scraper.py
