@@ -2,7 +2,7 @@ name: Execucao automatica do InvestNote resumo diario
 
 on: 
   schedule:
-    - cron: '20 21 * * *' # Roda às 18:20 no horário de Brasília (RS)
+    - cron: '0 11 * * *' # Roda às 18:20 no horário de Brasília (RS)
   workflow_dispatch: # Permite rodar manualmente pelo botão no GitHub
 
 jobs: 
