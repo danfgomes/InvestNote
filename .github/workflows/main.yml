@@ -2,8 +2,8 @@ name: Execucao automatica do InvestNote resumo diario
 
 on: 
   schedule:
-    - cron: '20 21 * * *' # 10h da manhã no RS
-  workflow_dispatch: 
+    - cron: '20 21 * * *' # Roda às 18:20 no horário de Brasília (RS)
+  workflow_dispatch: # Permite rodar manualmente pelo botão no GitHub
 
 jobs: 
   run-scraper:
@@ -18,15 +18,19 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Instalar Poetry e Dependencias
-        run: |
-          curl -sSL https://install.python-poetry.org | python3 -
-          export PATH="$HOME/.local/bin:$PATH"
-          poetry install
+      - name: Instalar o Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+
+      - name: Instalar Dependencias
+        run: poetry install --no-interaction --no-root
 
       - name: Executar o Scraper
         env:
           TAVILY_API_KEY: ${{ secrets.TAVILY_API_KEY }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         run: poetry run python scraper.py
