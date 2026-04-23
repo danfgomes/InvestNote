@@ -2,7 +2,7 @@ name: Execucao automatica do InvestNote resumo diario
 
 on: 
   schedule:
-    - cron: '0 13 * * *' # 10h da manhã no RS
+    - cron: '20 21 * * *' # 10h da manhã no RS
   workflow_dispatch: 
 
 jobs: 
