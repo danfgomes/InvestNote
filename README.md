@@ -15,10 +15,4 @@ Este projeto faz parte de uma arquitetura de microserviços que integra Intelig�
 - **IA/Busca:** Tavily AI
 - **Mensageria:** Telegram Bot API
 - **Gestão de Dependências:** Poetry
-- **Arquitetura:** Microserviços e Clean Code
 
-## Como rodar o projeto
-
-1. **Clone o repositório:**
-   ```bash
- 
